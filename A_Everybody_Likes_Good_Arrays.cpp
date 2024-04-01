@@ -47,7 +47,16 @@ long power(long a, long b) {
 }
 
 void Solve(){
-
+    int n;cin>>n;
+    int ans=0;
+    int x;cin>>x;
+    int prev=x;
+    F(1,n,1,i){
+        cin>>x;
+        if((x&1 && prev&1) || (x%2==0 && prev%2==0))ans++;
+        prev=x;
+    }
+    cout<<ans<<endl;
 }
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);

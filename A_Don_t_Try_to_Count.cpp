@@ -4,7 +4,7 @@ using namespace std;
 
 #define ll 		long long
 #define f 		first
-#define sec 	second
+#define sec 		second
 #define pb 		push_back
 #define p 		push
 #define vi		vector<int>
@@ -47,33 +47,32 @@ long power(long a, long b) {
 }
 
 void Solve(){
-    int n;cin>>n;
-    u_mi m;
-    F(0,n,1,i){
-        int x;cin>>x;
-        m[x]++;
+    int x,k;cin>>x>>k;
+    string s1,s2;cin>>s1>>s2;
+    int ans=0;
+    bool say=false;
+    if(x>k){size_t found = s1.find(s2);
+  if (found != string::npos)cout<<0<<endl;
+  else{
+        s1=s1+s1;
+         size_t found = s1.find(s2);
+  if (found != string::npos)cout<<1<<endl;
+  else cout<<-1<<endl;}
     }
-    if(m.size()>2)cout<<"No"<<endl;
     else{
-        if(m.size()==1)cout<<"Yes"<<endl;
-        else{
-        int a=0,b=0;
-        Fa(m,i){
-            if(a==0)a=i.sec;
-            else b=i.sec;
+        bool s=false;
+        int ans=0;
+        while(s1.size()<=3*s2.size()){
+            
+             size_t found = s1.find(s2);
+            if (found != string::npos){s=true;break;}
+            s1+=s1;ans++;
+            // cout<<s1<<endl;
         }
-        if(n&1){
-            if(b==n/2 &&a==(n+1)/2||(a==n/2 &&b==(n+1)/2))cout<<"Yes"<<endl;
-            else cout<<"No"<<endl;
-        }
-        else if(a==b)cout<<"Yes"<<endl;
-
-        else cout<<"No"<<endl;
-        }
+        cout<<(s ? ans:-1)<<endl;
     }
 
 }
-
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 

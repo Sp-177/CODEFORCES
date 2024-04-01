@@ -4,7 +4,7 @@ using namespace std;
 
 #define ll 		long long
 #define f 		first
-#define sec 	second
+#define sec 		second
 #define pb 		push_back
 #define p 		push
 #define vi		vector<int>
@@ -47,33 +47,29 @@ long power(long a, long b) {
 }
 
 void Solve(){
-    int n;cin>>n;
-    u_mi m;
-    F(0,n,1,i){
-        int x;cin>>x;
-        m[x]++;
-    }
-    if(m.size()>2)cout<<"No"<<endl;
-    else{
-        if(m.size()==1)cout<<"Yes"<<endl;
-        else{
-        int a=0,b=0;
-        Fa(m,i){
-            if(a==0)a=i.sec;
-            else b=i.sec;
+    int ans=0;
+    int x=0,y=0;
+    F(1,11,1,i){
+        if(i<=5)x=i;
+        else {
+            if(i==6)x=5;
+            else x--;
         }
-        if(n&1){
-            if(b==n/2 &&a==(n+1)/2||(a==n/2 &&b==(n+1)/2))cout<<"Yes"<<endl;
-            else cout<<"No"<<endl;
+        F(1,11,1,j){
+            if(j<=5)y=j;
+            else{
+            if(j==6)y=5;
+            else y--;
+            }
+            char c;cin>>c;
+            if(c=='X'){ans+=min(x,y);}
         }
-        else if(a==b)cout<<"Yes"<<endl;
 
-        else cout<<"No"<<endl;
-        }
+        
+        
     }
-
+    cout<<ans<<endl;
 }
-
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
