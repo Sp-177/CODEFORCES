@@ -47,15 +47,18 @@ long power(long a, long b) {
 }
 
 void Solve(){
-    string s;cin>>s;
-    int i=0;
-    int j=s.size()-1;
-    if(s[i]==s[j])cout<<s<<endl;
-    else {
-        s[j]=s[i];
-        cout<<s<<endl;
-    }
+    ll a,b;cin>>a>>b;
+    if(a==b)cout<<0<<' '<<0<<endl;
+    else{
+    ll gcd1=max(a,b)-min(a,b);
+    ll min1=min(a,b)%gcd1;
+    ll min2=gcd1-min1;
+   
+   
     
+   cout<<gcd1<<' '<<min(min2,min1)<<endl;
+    
+    }
 }
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);

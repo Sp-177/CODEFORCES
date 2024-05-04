@@ -22,8 +22,8 @@ using namespace std;
 #define all(x)		x.begin(),x.end()
 #define que_max		priority_queue<int>
 #define que_min		priority_queue<int,vi,greater<int>>
-#define F(x,y,z,i)	for(int i=x;i<y;i=i+z)
-#define Fr(x,y,z,i)	for(int i=x;i>y;i=i-z)
+#define F(x,y,z,i)	for(ll i=x;i<y;i=i+z)
+#define Fr(x,y,z,i)	for(ll i=x;i>y;i=i-z)
 #define Fa(x,i)		for(auto i:x)
 #define vvi		vector<vi>
 #define vc      vector<char>
@@ -47,15 +47,33 @@ long power(long a, long b) {
 }
 
 void Solve(){
-    string s;cin>>s;
-    int i=0;
-    int j=s.size()-1;
-    if(s[i]==s[j])cout<<s<<endl;
-    else {
-        s[j]=s[i];
-        cout<<s<<endl;
+    ll k;
+    int n,x,y;cin>>n>>k>>x>>y;
+    x--;y--;
+    vi v1(n);F(0,n,1,i){cin>>v1[i];v1[i]--;}
+    vi v2(n);F(0,n,1,i)cin>>v2[i];
+    ll ans1=0,ans2=0;
+    vb b(n),s(n);
+    ll sb=0,ss=0;
+    while(!b[x]){
+        b[x]=true;
+        ans1+=v2[x];
+        sb++;
+        if(v2[v1[x]]>=v2[x])x=v1[x];
     }
-    
+    while(!s[y]){
+        s[y]=true;
+        ans2+=v2[y];
+        ss++;
+        if(v2[v1[y]]>=v2[y])y=v1[y];
+    }
+    ll B=(k-sb)*v2[x];
+    ll S=(k-ss)*v2[y];
+    ans1+=B;
+    ans2+=S;
+    if(ans1>ans2)cout<<"Bodya"<<endl;
+    else if(ans1==ans2)cout<<"Draw"<<endl;
+    else cout<<"Sasha"<<endl;
 }
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);

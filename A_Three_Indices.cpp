@@ -3,6 +3,7 @@
 using namespace std;
 
 #define ll 		long long
+#define ull 		unsigned long long
 #define f 		first
 #define sec 		second
 #define pb 		push_back
@@ -47,15 +48,25 @@ long power(long a, long b) {
 }
 
 void Solve(){
-    string s;cin>>s;
-    int i=0;
-    int j=s.size()-1;
-    if(s[i]==s[j])cout<<s<<endl;
-    else {
-        s[j]=s[i];
-        cout<<s<<endl;
+    int n;cin>>n;
+    vi v(n);F(0,n,1,i)cin>>v[i];
+    int i=0,j=n-1;
+    bool f1=false;
+    while(i<j){
+        if(v[i]==n||v[j]==n){
+            if(v[i]==n)i++;
+            else j--;
+            n--;
+        }
+        else {f1=true;break;}  
     }
-    
+    if(f1){
+        int k=0;
+        F(i,j+1,1,l)if(v[l]>v[i]&&v[l]>v[j]){k=l;break;}
+        cout<<"YES"<<endl;
+        cout<<i+1<<' '<<k+1<<' '<<j+1<<endl;
+    }
+    else cout<<"NO"<<endl;
 }
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);

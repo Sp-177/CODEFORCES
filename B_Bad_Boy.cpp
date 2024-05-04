@@ -47,15 +47,8 @@ long power(long a, long b) {
 }
 
 void Solve(){
-    string s;cin>>s;
-    int i=0;
-    int j=s.size()-1;
-    if(s[i]==s[j])cout<<s<<endl;
-    else {
-        s[j]=s[i];
-        cout<<s<<endl;
-    }
-    
+    int n,m,i,j;cin>>n>>m>>i>>j;
+    cout<<1<<' '<<m<<' '<<n<<' '<<1<<endl;
 }
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
