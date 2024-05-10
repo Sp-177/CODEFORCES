@@ -1,10 +1,11 @@
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
+#define ull unsigned long long
 class Solution{
     public:
-        bool sol(int ans){
-            int x=floor(sqrt(ans));
+        bool sol(ull ans){
+            ull x=(sqrt(ans));
             if(ans==x*x)return true;
             return false;
         }
@@ -13,9 +14,9 @@ int main(){
     int t;cin>>t;
     for(int i=0;i<t;i++){
         int b;cin>>b;
-        int v=0;
+        ull v=0;
         for(int j=0;j<b;j++){
-            int temp;cin>>temp;
+            ull temp;cin>>temp;
             v+=temp;
         }
         Solution s;
