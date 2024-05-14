@@ -137,45 +137,22 @@ bool isPrime(int n)
 
 
 void Solve(){
-ull a,b;cin>>a>>b;
-ll ans=0;
-if(a==b)cout<<0<<endl;
-else{
-    if(a>b){
-        if(a%2!=0)cout<<-1<<endl;
-        else{
-            
-            while(a>b){
-                if(a%8==0 &&a/8>=b)a=a/8;
-                else if(a%4==0&&a/4>=b)a=a/4;
-                else if(a%2==0&&a/2>=b)a=a/2;
-                else break;
-                ans++;
-            }
-            if(a==b)cout<<ans<<endl;
-            else cout<<-1<<endl;
+    int n;cin>>n;string s;cin>>s;
+    int ans=0;
+    int n_l=0,n_r=0;
+    int index=0;
+    while(index<s.size()){
+        if(s[index]==')'){
+            if(n_l>0)n_l--;
+            else {ans++;n_r++;}
         }
+        if(s[index]=='(')n_l++;
+        index++;
     }
-    else{
-        if(b%2!=0)cout<<-1<<endl;
-        else{
-            while(a<b){
-                if(a*8<=b)a=a*8;
-                else if(a*4<=b)a=a*4;
-                else if(a*2<=b)a=a*2;
-                else break;
-                ans++;
-            }
-            if(a==b)cout<<ans<<endl;
-            else cout<<-1<<endl;
-        }
-    }
-}
-    
+    // if(n_l!=n_r)ans+=abs(n_l);
+    cout<<ans<<endl;
 
 }
-
-
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 

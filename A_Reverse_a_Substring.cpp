@@ -35,6 +35,9 @@ using namespace std;
 #define print(a)	for(auto i:a){cout<<i<<" ";}cout<<endl
 #define Print(a,x)	for(auto i:a){cout<<i.x<<" ";}cout<<endl
 #define pp(a)  for(auto i:a){for(auto j:i){cout<<j<<' ';}cout<<endl;}cout<<endl
+#define It(x)     x::iterator
+#define lb          lower_bound
+#define ub          upper_bound
 
 //Binary Expo
 long long power(long a, long b) {
@@ -137,51 +140,40 @@ bool isPrime(int n)
 
 
 void Solve(){
-ull a,b;cin>>a>>b;
-ll ans=0;
-if(a==b)cout<<0<<endl;
-else{
-    if(a>b){
-        if(a%2!=0)cout<<-1<<endl;
-        else{
-            
-            while(a>b){
-                if(a%8==0 &&a/8>=b)a=a/8;
-                else if(a%4==0&&a/4>=b)a=a/4;
-                else if(a%2==0&&a/2>=b)a=a/2;
-                else break;
-                ans++;
-            }
-            if(a==b)cout<<ans<<endl;
-            else cout<<-1<<endl;
+
+    int n;cin>>n;
+    string s;cin>>s;
+    string t=s;
+    sort(all(t));
+    int index1=1,index2=n;
+    char c='a';
+    bool check=false;
+    F(0,n,1,i){
+        if(s[i]!=t[i]){
+            c=t[i];
+            check=true;
+            index1=i;break;
         }
     }
-    else{
-        if(b%2!=0)cout<<-1<<endl;
-        else{
-            while(a<b){
-                if(a*8<=b)a=a*8;
-                else if(a*4<=b)a=a*4;
-                else if(a*2<=b)a=a*2;
-                else break;
-                ans++;
-            }
-            if(a==b)cout<<ans<<endl;
-            else cout<<-1<<endl;
+    F(0,n,1,i){
+        if(i>index1&&s[i]==c){
+            index2=i;
+            break;
         }
     }
-}
-    
+    if(check){
+        cout<<"YES"<<endl<<index1+1<<' '<<index2+1<<endl;
+    }
+    else cout<<"NO"<<endl;
 
 }
-
-
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
 	int t;
-	cin>>t;
+	// cin>>t;
+    t=1;
 	while(t--){
         Solve();       
-    	}
+    }
 }
