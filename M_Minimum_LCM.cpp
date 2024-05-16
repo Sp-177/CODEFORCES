@@ -4,21 +4,30 @@
 using namespace std;
 
 #define ll 		long long
-#define ull 		unsigned long long
+#define ull 	unsigned long long
 #define f 		first
-#define sec 		second
+#define sec 	second
 #define pb 		push_back
-#define p 		push
+#define pu 		push
+#define ins     insert
+#define po      pop()
+#define pob     pop_back()
+#define pof     pop_front()
+#define pf      push_front
+#define is(x,i) x.find(i)!=x.end()  
+#define e       empty()
 #define vi		vector<int>
-#define pii 		pair<int,int>
+#define dqi     deque<int>
+#define dqp     deque<pii>
+#define pii 	pair<int,int>
 #define vpi		vector<pii>
 #define vs		vector<string>
-#define u_mi		unordered_map<int,int>
-#define u_mc 		unordered_map<char,int>
-#define u_ms		unordered_map<string,int>
-#define u_si 		unordered_set<int>
-#define u_sc		unordered_set<char>
-#define u_ss		unordered_set<string>
+#define u_mi	unordered_map<int,int>
+#define u_mc 	unordered_map<char,int>
+#define u_ms	unordered_map<string,int>
+#define u_si 	unordered_set<int>
+#define u_sc	unordered_set<char>
+#define u_ss	unordered_set<string>
 #define ld		long double
 #define d		double
 #define all(x)		x.begin(),x.end()
@@ -31,8 +40,8 @@ using namespace std;
 #define vc      vector<char>
 #define vvc     vector<vc>
 #define vll		vector<ll>
-#define vb      	vector<bool>
-#define vvb     	vector<vb>
+#define vb      vector<bool>
+#define vvb     vector<vb>
 #define print(a,i)	for(auto i:a){cout<<i<<" ";}cout<<endl
 
 long mod = 1000000007;
@@ -48,22 +57,30 @@ long power(long a, long b) {
         return res;
 }
 
+vi nD(ll n) 
+{ 
+   vi ans; 
+    for (int i=1; i<=sqrt(n); i++) 
+    { 
+        if (n%i == 0) 
+        { 
+                if (n/i == i)ans.pb(i);
+  
+            else {ans.pb(i);ans.pb(n/i);} 
+        } 
+    }
+    
+return ans; 
+} 
+
+
 void Solve(){
     int n;cin>>n;
-    int ans1=0,ans2=0;
-    int b=n/2 -1;
-    int m=n/2;
-    int a=n/2 +1;
-    int lcm1=(a*(n-a))/__gcd(a,n-a);
-    int lcm2=(m*(n-m))/__gcd(m,n-m);
-    int lcm3=(b*(n-b))/__gcd(b,n-b);
-    if(lcm1==0)lcm1=INT_MAX;
-    if(lcm2==0)lcm2=INT_MAX;
-    if(lcm3==0)lcm3=INT_MAX;
-    int ans=min(lcm1,min(lcm2,lcm3));
-    ans1=(lcm1==ans?a:lcm2==ans?m:lcm3==ans?b:1);
-    ans2=(lcm1==ans?n-a:lcm2==ans?n-m:lcm3==ans?n-b:n-1);
-    cout<<ans1<<' '<<ans2<<endl;
+    int l=n-1;
+    vi v=nD(n);
+    // print(v,i);
+    Fa(v,i)if(i!=n)l=min(l,n-i);
+    cout<<n-l<<' '<<l<<endl;
 }
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
