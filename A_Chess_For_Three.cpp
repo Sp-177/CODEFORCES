@@ -13,7 +13,9 @@ using namespace std;
 #define pob     	pop_back()
 #define pof     	pop_front()
 #define pf      	push_front
-#define fi(x,i) 	x.find(i)!=x.end()  
+#define fr		front()
+#define ba		back()
+#define fi(x,i) 	x.find(i)!=x.end()
 #define e       	empty()
 #define vi		vector<int>
 #define dqi     	deque<int>
@@ -46,6 +48,10 @@ using namespace std;
 #define It(v) 		v::iterator
 #define lb(x,i)        	lower_bound(all(x),i)
 #define ub(x,i)      	upper_bound(all(x),i)
+#define amsi		multiset<ll,greater<ll>>
+#define dmsi		multiset<ll>
+#define cmsi		multiset<char>
+#define mmi 		multimap<ll,ll>
 
 
 
@@ -165,18 +171,37 @@ vll nD(ll n)
 return ans; 
 } 
 
+//BinaryString
+string dB(int n)
+{
+string ans="";
+    for (int i = 31; i >= 0; i--) {
+        int k = n >> i;
+        if (k & 1)ans="1"+ans;
+        else ans="0"+ans;
+    }
+return ans;
+}
 
 void Solve(){
-
-    int n;cin>>n;
-    string s;cin>>s;
-    u_si m;
-    int ans=0;
-    F(0,n,1,i){
-        m.ins(s[i]);
-        ans+=m.size();
-    }
-    cout<<ans<<endl;
+int a,b,c;cin>>a>>b>>c;
+int ans=0;
+bool check=true;
+que_max q;
+if(a)q.pu(a);if(b)q.pu(b);if(c)q.pu(c);
+while(!q.empty()&&q.size()>1){
+    int t=q.top();
+    q.pop();
+    int t2=q.top();
+    q.pop();
+    t--;t2--;
+    if(t)q.pu(t);
+    if(t2)q.pu(t2);
+    ans++;
+}
+if(q.size())if(q.top()&1){check=false;cout<<-1<<endl;}
+if(check)cout<<ans<<endl;
+    
 
 }
 int main(){

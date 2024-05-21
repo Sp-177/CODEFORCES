@@ -4,6 +4,7 @@ using namespace std;
 
 #define ll 		long long
 #define ull 		unsigned long long
+#define pii		pair<ll,ll>
 #define f 		first
 #define sec 		second
 #define pb 		push_back
@@ -13,7 +14,9 @@ using namespace std;
 #define pob     	pop_back()
 #define pof     	pop_front()
 #define pf      	push_front
-#define fi(x,i) 	x.find(i)!=x.end()  
+#define fr		front()
+#define ba		back()
+#define fi(x,i) 	x.find(i)!=x.end()
 #define e       	empty()
 #define vi		vector<int>
 #define dqi     	deque<int>
@@ -46,6 +49,10 @@ using namespace std;
 #define It(v) 		v::iterator
 #define lb(x,i)        	lower_bound(all(x),i)
 #define ub(x,i)      	upper_bound(all(x),i)
+#define amsi		multiset<ll,greater<ll>>
+#define dmsi		multiset<ll>
+#define cmsi		multiset<char>
+#define mmi 		multimap<ll,ll>
 
 
 
@@ -119,9 +126,9 @@ public:
 };
 
 // Compartor Func
-static const bool cmp(int&a,int&b){
-	if(a>b)return true;
-	else if(a==b)return a>b;
+static const bool cmp(pii&a,pii&b){
+	if(a.f<b.f)return true;
+	else if(a.f==b.f)return a.sec<b.sec;
 	return false;
 }
 
@@ -165,18 +172,47 @@ vll nD(ll n)
 return ans; 
 } 
 
+//BinaryString
+string dB(int n)
+{
+string ans="";
+    for (int i = 31; i >= 0; i--) {
+        int k = n >> i;
+        if (k & 1)ans="1"+ans;
+        else ans="0"+ans;
+    }
+return ans;
+}
 
 void Solve(){
-
     int n;cin>>n;
-    string s;cin>>s;
-    u_si m;
-    int ans=0;
+    vpi m;
     F(0,n,1,i){
-        m.ins(s[i]);
-        ans+=m.size();
+        int x;cin>>x;
+       m.pb({x,i});
     }
-    cout<<ans<<endl;
+    sort(all(m),cmp);
+    
+    Pp(m,f);
+    Pp(m,sec);
+    vi v(n);
+    vi ind(n);
+    F(0,n,1,i){
+        v[i]=m[i].f;
+        ind[i]=m[i].sec;
+    }
+    int k=0;
+    Fa(m,i){
+        v[k]=i.f;
+        ind[k]=i.sec;
+        k++;
+    }
+    ll pre=v[0];
+    vi ans(n);
+    F(1,n,1,i){
+       
+    }
+    p(ans);    
 
 }
 int main(){
