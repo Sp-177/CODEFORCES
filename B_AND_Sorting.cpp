@@ -201,10 +201,12 @@ void Solve()
 {
     int n;cin>>n;
     vi v(n);
-    vi freq(n);
-    vi sorted(n);
-    vi presum(n);
-    F(0,n,1,i){cin>>v[i];}
+    vi x;
+    F(0,n,1,i){cin>>v[i];if(v[i]!=i){x.pb(v[i]);}}
+    int ans=x[0];
+    F(0,x.size(),1,i){ans&=x[i];}
+    cout<<ans<<endl;
+
 
 
 
