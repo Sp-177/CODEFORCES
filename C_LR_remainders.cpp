@@ -7,7 +7,7 @@ using namespace std;
 #define s 		second
 #define pb 		push_back
 #define p 		push
-#define vi		vector<int>
+#define vi		vector<ll>
 #define pii 		pair<int,int>
 #define vpi		vector<pii>
 #define vs		vector<string>
@@ -31,9 +31,7 @@ using namespace std;
 #define vvb     	vector<vb>
 #define print(a,i)	for(auto i:a){cout<<i<<" ";}cout<<endl
 
-void Solve(){
 
-}
 
 int main(){
 	ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
@@ -41,30 +39,40 @@ int main(){
 	int t;
 	cin>>t;
 	while(t--){
-       int n,m;
+       long long n,m;
        cin>>n>>m;
-       vi v(n);
-      long long int mod=1e18+7;
-       long long int p=1;
-       F(0,n,1,i){cin>>v[i];p=(p*v[i]);}
-       cout<<p%m<<" ";
-       int l=0;int r=n-1;
-       F(0,n,1,i){
-        
-        char c;cin>>c;
-        if(i==n-1)break;
+       
+       vi arr(n);
+       F(0,n,1,i){cin>>arr[i];}
+       string removal;cin>>removal;
+       int start=0,end=n-1;
+       for(char c:removal){
+        if(start==end)break;
         if(c=='L'){
-            p=p/v[l++];
-            cout<<p%m<<" ";
+            start++;
         }
-        else {
-            p=p/v[r--];
-            cout<<p%m<<" ";
-        }
+        else end--;
        }
-
+       vi ans;
+       int ind=n-2;
+       long long pro=arr[start]%m;
+       ans.push_back(pro);
+       while(start>=0&&end<n&&ind>=0){
+            if(removal[ind]=='L'){
+                start--;
+                pro*=arr[start];
+                
+            }
+            else{
+                end++;
+                pro*=arr[end];
+            }
+            pro%=m;
+            ans.push_back(pro);
+            ind--;
+       }
+       for(int i=ans.size()-1;i>=0;i--)cout<<ans[i]<<" ";
        cout<<endl;
-
     }
 	return 0;
 }

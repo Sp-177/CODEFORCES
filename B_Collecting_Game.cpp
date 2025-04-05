@@ -199,14 +199,24 @@ auto init=[](){ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);return ' ';}();
 
 void Solve()
 {
-    int n;cin>>n;
-    vi v(n);
-    vi freq(n);
-    vi sorted(n);
-    vi presum(n);
-    F(0,n,1,i){cin>>v[i];}
-
-
+   int n;cin>>n;
+   vi a(n);F(0,n,1,i){cin>>a[i];}
+   vi dp=a;
+   sort(all(dp));
+   vec<ull> pre_sum(n,0);
+   pre_sum[0]=dp[0];
+   F(1,n,1,i){pre_sum[i]=pre_sum[i-1]+dp[i];}
+//    pr(pre_sum);
+//    pr(dp);
+    Fa(a,i){
+        int index=ub(dp,i)-dp.begin()-1;
+        // cout<<index-1<<endl;
+        ull sum=pre_sum[index];
+        int ans=lb(dp,sum)-dp.begin();
+        
+        cout<<max(ans-1,0)<<' ';
+    }
+    cout<<endl;
 
 }
 int main()
